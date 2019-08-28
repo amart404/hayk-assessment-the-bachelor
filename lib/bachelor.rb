@@ -33,8 +33,8 @@ end
 
 def get_occupation(data, hometown)
   # code here
-  data.each do |season, array|
-    array.each do |info|
+  data.each do |season, contestant|
+    contestant.each do |info|
       if info["hometown"] == hometown
         return info["occupation"]
       end
@@ -44,16 +44,8 @@ end
 
 def get_average_age_for_season(data, season)
   # code here
-  total_age  = 0
-  age_array = []
-  average_age = 0
-  #contestants = 0
-  data[season].each do |array|
-      age = array["age"].to_i
-      age_array << age
-      #contestants += 1
-  end
-  total_age = age_array.reduce(0) { |sum, n| sum + n }
-  average_age = (total_age / age_array.length).ceil
-  return average_age 
+  average_age = data[season].map do |contestant|
+    contestant["age"].to_i
+  end.reduce(:+).to_f / data[season].length
+  average_age.round
 end
