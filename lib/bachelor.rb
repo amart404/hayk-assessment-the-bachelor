@@ -44,7 +44,7 @@ end
 
 def get_average_age_for_season(data, season)
   # code here
-  total_age = 0
+  total_age  = 0
   average_age = 0
   contestants = 0
   data[season].each do |array|
@@ -52,6 +52,5 @@ def get_average_age_for_season(data, season)
       total_age = total_age + age
       contestants += 1
   end
-  average_age = (total_age / contestants)
-  return average_age
+  average_age = (total_age/contestants).ceil
 end
